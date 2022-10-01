@@ -71,6 +71,19 @@ class Grid {
     return newGrid;
   }
 
+  resize(width: number, height: number): Grid {
+    const newGrid = new Grid(width, height);
+
+    for (let x = 0; x < Math.min(this.width, newGrid.width); x++) {
+      for (let y = 0; y < Math.min(this.height, newGrid.height); y++) {
+        const cellLifeStatus = this.getCellLifeStatus(x, y);
+        newGrid.setCellLifeStatus(x, y, cellLifeStatus);
+      }
+    }
+
+    return newGrid;
+  }
+
   isEqual(grid: Grid): boolean {
     if (this.width !== grid.width) return false;
     if (this.height !== grid.height) return false;
